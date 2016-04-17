@@ -15,10 +15,15 @@ namespace Smooth.Foundations.PatternMatching.Options
             _addPredicateAndAction = addPredicateAndAction;
         }
 
-        public OfMatcher<T> Of(T value) => new OfMatcher<T>(value, _matcher, _addPredicateAndAction);
+        public OfMatcher<T> Of(T value)
+        {
+            return new OfMatcher<T>(value, this._matcher, this._addPredicateAndAction);
+        }
 
-        public WhereForOption<T> Where(DelegateFunc<T, bool> predicate) => 
-            new WhereForOption<T>(predicate, _addPredicateAndAction, _matcher);
+        public WhereForOption<T> Where(DelegateFunc<T, bool> predicate)
+        {
+            return new WhereForOption<T>(predicate, this._addPredicateAndAction, this._matcher);
+        }
 
         public OptionMatcher<T> Do(Action<T> action)
         {

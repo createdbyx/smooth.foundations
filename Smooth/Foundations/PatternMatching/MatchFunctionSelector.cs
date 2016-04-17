@@ -18,8 +18,10 @@ namespace Smooth.Foundations.PatternMatching
             _defaultFunction = defaultFunction;
         }
 
-        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateFunc<T1, TResult> action) => 
-            _predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, bool>, DelegateFunc<T1, TResult>>(test, action));
+        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateFunc<T1, TResult> action)
+        {
+            this._predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, bool>, DelegateFunc<T1, TResult>>(test, action));
+        }
 
         public TResult DetermineResultUsingDefaultIfRequired(T1 value)
         {
@@ -51,8 +53,11 @@ namespace Smooth.Foundations.PatternMatching
             _defaultFunction = defaultFunction;
         }
 
-        public void AddTestAndAction(DelegateFunc<T1, T2, bool> test, DelegateFunc<T1, T2, TResult> action) =>
-            _predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, T2, bool>, DelegateFunc<T1, T2, TResult>>(test, action));
+        public void AddTestAndAction(DelegateFunc<T1, T2, bool> test, DelegateFunc<T1, T2, TResult> action)
+        {
+            this._predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, T2, bool>, DelegateFunc<T1, T2, TResult>>(test,
+                action));
+        }
 
         public TResult DetermineResultUsingDefaultIfRequired(Tuple<T1, T2> value)
         {
@@ -86,8 +91,11 @@ namespace Smooth.Foundations.PatternMatching
             _defaultFunction = defaultFunction;
         }
 
-        public void AddTestAndAction(DelegateFunc<T1, T2, T3, bool> test, DelegateFunc<T1, T2, T3, TResult> action) =>
-            _predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, T2, T3, bool>, DelegateFunc<T1, T2, T3, TResult>>(test, action));
+        public void AddTestAndAction(DelegateFunc<T1, T2, T3, bool> test, DelegateFunc<T1, T2, T3, TResult> action)
+        {
+            this._predicatesAndFuncs.Add(
+                new Tuple<DelegateFunc<T1, T2, T3, bool>, DelegateFunc<T1, T2, T3, TResult>>(test, action));
+        }
 
         public TResult DetermineResultUsingDefaultIfRequired(Tuple<T1, T2, T3> value)
         {
@@ -121,8 +129,11 @@ namespace Smooth.Foundations.PatternMatching
             _defaultFunction = defaultFunction;
         }
 
-        public void AddTestAndAction(DelegateFunc<T1, T2, T3, T4, bool> test, DelegateFunc<T1, T2, T3, T4, TResult> action) =>
-            _predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, T2, T3, T4, bool>, DelegateFunc<T1, T2, T3, T4, TResult>>(test, action));
+        public void AddTestAndAction(DelegateFunc<T1, T2, T3, T4, bool> test, DelegateFunc<T1, T2, T3, T4, TResult> action)
+        {
+            this._predicatesAndFuncs.Add(
+                new Tuple<DelegateFunc<T1, T2, T3, T4, bool>, DelegateFunc<T1, T2, T3, T4, TResult>>(test, action));
+        }
 
         public TResult DetermineResultUsingDefaultIfRequired(Tuple<T1, T2, T3, T4> value)
         {

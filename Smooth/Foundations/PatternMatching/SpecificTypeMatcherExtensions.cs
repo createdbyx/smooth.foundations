@@ -10,20 +10,34 @@ namespace Smooth.Foundations.PatternMatching
     /// </summary>
     public static class SpecificTypeMatcherExtensions
     {
-        public static ExecMatcher<T> Match<T>(this Tuple<T> item) => new ExecMatcher<T>(item.Item1);
+        public static ExecMatcher<T> Match<T>(this Tuple<T> item)
+        {
+            return new ExecMatcher<T>(item.Item1);
+        }
 
-        public static ExecMatcher<T1, T2> Match<T1, T2>(this Tuple<T1, T2> item) =>
-            new ExecMatcher<T1, T2>(item.Item1, item.Item2);
+        public static ExecMatcher<T1, T2> Match<T1, T2>(this Tuple<T1, T2> item)
+        {
+            return new ExecMatcher<T1, T2>(item.Item1, item.Item2);
+        }
 
-        public static ExecMatcher<T1, T2, T3> Match<T1, T2, T3>(this Tuple<T1, T2, T3> item) =>
-            new ExecMatcher<T1, T2, T3>(item.Item1, item.Item2, item.Item3);
+        public static ExecMatcher<T1, T2, T3> Match<T1, T2, T3>(this Tuple<T1, T2, T3> item)
+        {
+            return new ExecMatcher<T1, T2, T3>(item.Item1, item.Item2, item.Item3);
+        }
 
-        public static ExecMatcher<T1, T2, T3, T4> Match<T1, T2, T3, T4>(this Tuple<T1, T2, T3, T4> item) =>
-            new ExecMatcher<T1, T2, T3, T4>(item.Item1, item.Item2, item.Item3, item.Item4);
+        public static ExecMatcher<T1, T2, T3, T4> Match<T1, T2, T3, T4>(this Tuple<T1, T2, T3, T4> item)
+        {
+            return new ExecMatcher<T1, T2, T3, T4>(item.Item1, item.Item2, item.Item3, item.Item4);
+        }
 
-        public static OptionMatcher<T> Match<T>(this Option<T> item) => new OptionMatcher<T>(item);
+        public static OptionMatcher<T> Match<T>(this Option<T> item)
+        {
+            return new OptionMatcher<T>(item);
+        }
 
-        public static ResultOptionMatcher<T, TResult> Match<T, TResult>(this Option<T> item) =>
-            new ResultOptionMatcher<T, TResult>(item);
+        public static ResultOptionMatcher<T, TResult> Match<T, TResult>(this Option<T> item)
+        {
+            return new ResultOptionMatcher<T, TResult>(item);
+        }
     }
 }

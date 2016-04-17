@@ -47,9 +47,20 @@ namespace Smooth.Foundations.Algebraics
             }
         }
 
-        public Option<T1> FirstOption => Case == Variant.First ? Option.Some(_value1) : Option<T1>.None;
-        public Option<T2> SecondOption => Case == Variant.Second ? Option.Some(_value2) : Option<T2>.None;
-        public Option<T3> ThirdOption => Case == Variant.Third ? Option.Some(_value3) : Option<T3>.None;
+        public Option<T1> FirstOption
+        {
+            get { return this.Case == Variant.First ? Option.Some(this._value1) : Option<T1>.None; }
+        }
+
+        public Option<T2> SecondOption
+        {
+            get { return this.Case == Variant.Second ? Option.Some(this._value2) : Option<T2>.None; }
+        }
+
+        public Option<T3> ThirdOption
+        {
+            get { return this.Case == Variant.Third ? Option.Some(this._value3) : Option<T3>.None; }
+        }
 
         public readonly Variant Case;
 
@@ -57,12 +68,20 @@ namespace Smooth.Foundations.Algebraics
         private readonly T2 _value2;
         private readonly T3 _value3;
 
-        public static Union<T1, T2, T3> CreateFirst(T1 value) =>
-            new Union<T1, T2, T3>(Variant.First, value, default(T2), default(T3));
-        public static Union<T1, T2, T3> CreateSecond(T2 value) =>
-            new Union<T1, T2, T3>(Variant.Second, default(T1), value, default(T3));
-        public static Union<T1, T2, T3> CreateThird(T3 value) =>
-            new Union<T1, T2, T3>(Variant.Third, default(T1), default(T2), value);
+        public static Union<T1, T2, T3> CreateFirst(T1 value)
+        {
+            return new Union<T1, T2, T3>(Variant.First, value, default(T2), default(T3));
+        }
+
+        public static Union<T1, T2, T3> CreateSecond(T2 value)
+        {
+            return new Union<T1, T2, T3>(Variant.Second, default(T1), value, default(T3));
+        }
+
+        public static Union<T1, T2, T3> CreateThird(T3 value)
+        {
+            return new Union<T1, T2, T3>(Variant.Third, default(T1), default(T2), value);
+        }
 
         private Union(Variant selectedCase, T1 valueFirst, T2 valueSecond, T3 valueThird)
         {
@@ -72,7 +91,7 @@ namespace Smooth.Foundations.Algebraics
             _value3 = valueThird;
         }
 
-        public TResult Cata<TResult>(DelegateFunc<T1, TResult> first, 
+        public TResult Cata<TResult>(DelegateFunc<T1, TResult> first,
                                      DelegateFunc<T2, TResult> second,
                                      DelegateFunc<T3, TResult> third)
         {
@@ -411,11 +430,11 @@ namespace Smooth.Foundations.Algebraics
             switch (Case)
             {
                 case Variant.First:
-                    return $"[First: {_value1}]";
+                    return string.Format("[First: {0}", _value1);
                 case Variant.Second:
-                    return $"[Second: {_value2}]";
+                    return string.Format("[Second: {0}", _value2);
                 case Variant.Third:
-                    return $"[Third: {_value3}]";
+                    return string.Format("[Third: {0}", _value3);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

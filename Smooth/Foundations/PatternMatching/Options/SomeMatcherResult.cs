@@ -16,10 +16,15 @@ namespace Smooth.Foundations.PatternMatching.Options
             _predicateAndResultManager = predicateAndResultManager;
         }
 
-        public OfMatcherResult<T, TResult> Of(T value) => new OfMatcherResult<T, TResult>(value, _matcher, _predicateAndResultManager);
+        public OfMatcherResult<T, TResult> Of(T value)
+        {
+            return new OfMatcherResult<T, TResult>(value, this._matcher, this._predicateAndResultManager);
+        }
 
-        public WhereForOptionResult<T, TResult> Where(DelegateFunc<T, bool> predicate) => 
-            new WhereForOptionResult<T, TResult>(predicate, _predicateAndResultManager, _matcher);
+        public WhereForOptionResult<T, TResult> Where(DelegateFunc<T, bool> predicate)
+        {
+            return new WhereForOptionResult<T, TResult>(predicate, this._predicateAndResultManager, this._matcher);
+        }
 
         public ResultOptionMatcher<T, TResult> Do(DelegateFunc<T, TResult> func)
         {

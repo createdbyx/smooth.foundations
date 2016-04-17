@@ -20,8 +20,10 @@ namespace Smooth.Foundations.Foundations.PatternMatching.ValueOrErrorStructure.F
             _isError = isError;
         }
 
-        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateFunc<T1, TResult> action) =>
-            _predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, bool>, DelegateFunc<T1, TResult>>(test, action));
+        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateFunc<T1, TResult> action)
+        {
+            this._predicatesAndFuncs.Add(new Tuple<DelegateFunc<T1, bool>, DelegateFunc<T1, TResult>>(test, action));
+        }
 
         public Option<ValueOrError<TResult>> DetermineResult(ValueOrError<T1> value)
         {

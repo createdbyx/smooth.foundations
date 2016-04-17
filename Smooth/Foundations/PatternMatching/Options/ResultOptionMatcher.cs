@@ -14,21 +14,32 @@ namespace Smooth.Foundations.PatternMatching.Options
             _item = item;
             _funcSelector = new FuncSelectorForOption<T, TResult>(x =>
             {
-                throw new NoMatchException($"No match exist for value of {x}");
+                throw new NoMatchException(string.Format("No match exist for value of {0}",x));
             });
         }
-        public SomeMatcherResult<T, TResult> Some() => 
-            new SomeMatcherResult<T, TResult>(this, _funcSelector);
-        public NoneMatcherResult<T, TResult> None() => 
-            new NoneMatcherResult<T, TResult>(this, _funcSelector);
-        
-        public ResultOptionMatcherAfterElse<T, TResult> Else(DelegateFunc<Option<T>, TResult> elseResult) => 
-            new ResultOptionMatcherAfterElse<T, TResult>(_funcSelector, elseResult, _item);
+        public SomeMatcherResult<T, TResult> Some()
+        {
+            return new SomeMatcherResult<T, TResult>(this, this._funcSelector);
+        }
 
-        public ResultOptionMatcherAfterElse<T, TResult> Else(TResult elseResult) =>
-            new ResultOptionMatcherAfterElse<T, TResult>(_funcSelector, elseResult, _item);
+        public NoneMatcherResult<T, TResult> None()
+        {
+            return new NoneMatcherResult<T, TResult>(this, this._funcSelector);
+        }
 
-        public TResult Result() => _funcSelector.GetMatchedOrDefaultResult(_item);
+        public ResultOptionMatcherAfterElse<T, TResult> Else(DelegateFunc<Option<T>, TResult> elseResult)
+        {
+            return new ResultOptionMatcherAfterElse<T, TResult>(this._funcSelector, elseResult, this._item);
+        }
 
+        public ResultOptionMatcherAfterElse<T, TResult> Else(TResult elseResult)
+        {
+            return new ResultOptionMatcherAfterElse<T, TResult>(this._funcSelector, elseResult, this._item);
+        }
+
+        public TResult Result()
+        {
+            return this._funcSelector.GetMatchedOrDefaultResult(this._item);
+        }
     }
 }

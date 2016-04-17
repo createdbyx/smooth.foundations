@@ -16,9 +16,10 @@ namespace Smooth.Foundations.Foundations.PatternMatching.ValueOrErrorStructure
                 return _value;
             }
         }
-        public bool IsError { get; }
 
-        public string Error { get; }
+        public bool IsError { get; private set; }
+
+        public string Error { get; private set; }
 
         private readonly T _value;
 
@@ -35,8 +36,8 @@ namespace Smooth.Foundations.Foundations.PatternMatching.ValueOrErrorStructure
         private ValueOrError(T value, string error, bool isError)
         {
             _value = value;
-            Error = error;
-            IsError = isError;
+            this.Error = error;
+            this.IsError = isError;
         }
       
         public ValueOrErrorMatcher<T> Match()

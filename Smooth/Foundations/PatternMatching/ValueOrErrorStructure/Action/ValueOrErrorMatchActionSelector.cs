@@ -23,15 +23,21 @@ namespace Smooth.Foundations.Foundations.PatternMatching.ValueOrErrorStructure.A
         }
 
 
-        public void SetDefaultOnValueAction(DelegateAction<T1> action) =>
-            _onValueDefaultAction = new Option<DelegateAction<T1>>(action);
+        public void SetDefaultOnValueAction(DelegateAction<T1> action)
+        {
+            this._onValueDefaultAction = new Option<DelegateAction<T1>>(action);
+        }
 
 
-        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateAction<T1> action) =>
-            _testsAndActions.Add(new Tuple<DelegateFunc<T1, bool>, DelegateAction<T1>>(test, action));
+        public void AddPredicateAndAction(DelegateFunc<T1, bool> test, DelegateAction<T1> action)
+        {
+            this._testsAndActions.Add(new Tuple<DelegateFunc<T1, bool>, DelegateAction<T1>>(test, action));
+        }
 
-        public void AddErrorAction(DelegateAction<string> action) =>
-            _errorActions.Add(action);
+        public void AddErrorAction(DelegateAction<string> action)
+        {
+            this._errorActions.Add(action);
+        }
 
 
         public void InvokeMatchedOrDefaultAction(ValueOrError<T1> inputArgument)

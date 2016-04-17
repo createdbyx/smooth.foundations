@@ -20,10 +20,12 @@ namespace Smooth.Foundations.Foundations.PatternMatching.ValueOrErrorStructure.A
             _isError = isError;
         }
 
-        public WhereForValue<T> Where(DelegateFunc<T, bool> predicate) =>
-            _isError
-                ? WhereForValue<T>.Useless(_matcher)
-                : new WhereForValue<T>(predicate, _addPredicateAndAction, _matcher);
+        public WhereForValue<T> Where(DelegateFunc<T, bool> predicate)
+        {
+            return this._isError
+                ? WhereForValue<T>.Useless(this._matcher)
+                : new WhereForValue<T>(predicate, this._addPredicateAndAction, this._matcher);
+        }
 
         public ValueOrErrorMatcher<T> Do(DelegateAction<T> action)
         {
